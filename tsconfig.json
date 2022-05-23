@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      // "*": ["node_modules/*"],
+      "@controller/*": ["./src/controller/*"],
+      "@middleware/*": ["./src/middleware/*", "./src/middleware"],
+      "@router/*": ["./src/router/*"],
+      "@config/*": ["./src/config/*"]
+    }
+  },
+  "include": ["**/*"]
+}
