@@ -27,4 +27,6 @@ class LoggerMiddleware implements Logger {
   }
 }
 
-export default LoggerMiddleware;
+const logger = new LoggerMiddleware();
+
+export default logger;

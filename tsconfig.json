@@ -14,7 +14,8 @@
       "@middleware/*": ["./src/middleware/*", "./src/middleware"],
       "@router/*": ["./src/router/*"],
       "@config/*": ["./src/config/*"]
-    }
+    },
+    "resolveJsonModule": true
   },
   "include": ["**/*"]
 }

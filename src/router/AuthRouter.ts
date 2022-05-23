@@ -1,20 +1,23 @@
-import { Router, Request, Response, response } from "express";
+import express, { Router, Request, Response } from "express";
 
 interface AuthRouter {
-  getRoute(): Router;
+  routes(): Router;
+  router: Router;
 }
 
 class AuthRouterImpl implements AuthRouter {
-  getRoute(): Router {
-    const router = Router();
-    router.get("auth", (request: Request, reqsonse: Response) => {
+  router = express.Router();
+  routes(): express.Router {
+    this.router.get("/", (request: Request, response: Response) => {
       console.log("auth api call");
       response.send({
         message: "HELLO FROM AUTH API",
       });
     });
-    return router;
+    return this.router;
   }
 }
 
-export default AuthRouterImpl;
+const authRouter = new AuthRouterImpl();
+
+export default authRouter;

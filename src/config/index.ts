@@ -1,3 +1,4 @@
 import ConfigureApp from "./ConfigureApp";
+import firebaseAdminHelper from "./SetupFirebaseAdmin";
 
-export { ConfigureApp };
+export { ConfigureApp, firebaseAdminHelper as FirebaseAdminHelper };

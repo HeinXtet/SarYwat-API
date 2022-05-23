@@ -1,25 +1,64 @@
 import { Express } from "express";
 import { Logger } from "@middleware/index";
 import dotenv from "dotenv";
+import { AuthRouter } from "@router/index";
+import { FirebaseAdminHelper } from "@config/index";
+
 dotenv.config();
 
 class ConfigureApp {
-  constructor(express?: Express) {
-    this.express = express;
-  }
-  express?: Express = null;
   port = process.env.PORT;
+  express?: Express = null;
 
+  /**
+   * Configure App and PORT (optional)
+   * @param express
+   * @param port
+   */
+  constructor(express?: Express, port?: string) {
+    this.express = express;
+    this.port = port;
+  }
+
+  /**
+   * Configure PORT
+   * @param port
+   */
+  setupPort = (port?: string) => {
+    this.port = port;
+  };
+
+  /**
+   * Application setup
+   * @param express
+   */
   initApp = (express: Express) => {
     this.express = express;
   };
 
+  /**
+   * Setup firebase admin
+   */
+  setupFirebaseAdmin = () => {
+    FirebaseAdminHelper.initFirebaseAdmin();
+  };
+  /**
+   * Application Middleware configure
+   */
   setupMiddleware = () => {
-    this.express.use(new Logger().logging);
+    this.express.use(Logger.logging);
   };
 
-  setupRoute = () => {};
+  /**
+   * Application Route configure
+   */
+  setupRoute = () => {
+    this.express.use("/api/auth", AuthRouter.routes());
+  };
 
+  /**
+   * Start App
+   */
   startApplication = () => {
     this.express.listen(this.port, () => {
       console.log(
