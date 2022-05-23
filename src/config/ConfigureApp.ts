@@ -3,6 +3,7 @@ import { Logger } from "@middleware/index";
 import dotenv from "dotenv";
 import { AuthRouter } from "@router/index";
 import { FirebaseAdminHelper } from "@config/index";
+import databaseConnection from "./DatabaseConnection";
 
 dotenv.config();
 
@@ -54,6 +55,14 @@ class ConfigureApp {
    */
   setupRoute = () => {
     this.express.use("/api/auth", AuthRouter.routes());
+  };
+
+  /**
+   * Setup Database
+   *
+   */
+  setupDatabase = () => {
+    databaseConnection.setup();
   };
 
   /**

@@ -11,4 +11,5 @@ configureApp.setupPort(process.env.PORT);
 configureApp.setupFirebaseAdmin();
 configureApp.setupMiddleware();
 configureApp.setupRoute();
+configureApp.setupDatabase();
 configureApp.startApplication();
